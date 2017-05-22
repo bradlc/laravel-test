@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "express": "^4.15.3",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "preact": "latest",
+    "preact-render-to-string": "latest"
   },
   "scripts": {
     "start": "node app.js"

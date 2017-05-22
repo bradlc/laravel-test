@@ -1,15 +1,41 @@
 var express = require('express')
 var request = require('request')
 var app = express()
+var h = require('preact').h;
+var render = require('preact-render-to-string');
 
 app.get('/node', function (req, res) {
   request('http://localhost', function (error, response, body) {
     var data = JSON.parse(body);
-    var html = ''
+    var cities = []
     for (var item in data) {
-      html = html + data[item].Name + '<br>'
+      cities.push(data[item].Name)
     }
-    res.send(html)
+
+    var City = function City(_ref) {
+      var name = _ref.name;
+      return h(
+        "div",
+        { "class": "city" },
+        h(
+          "strong",
+          null,
+          name
+        )
+      );
+    };
+
+    var cityDivs = cities.map(function (name, i) {
+      return h(City, { name: name });
+    });
+
+    var html = render(h(
+      "div",
+      null,
+      cityDivs
+    ));
+
+    res.send('<!doctype html>' + html)
   });
 })
 
