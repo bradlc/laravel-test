@@ -10,7 +10,7 @@ class TestController extends Controller
     public function test()
     {
         // return view('test');
-        $cities = City::get()->where('Population', '>', 5000000);
+        $cities = City::get()->where('population', '>', 5000000);
 
         return response()->json($cities);
     }
