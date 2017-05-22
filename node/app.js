@@ -4,8 +4,8 @@ var app = express()
 var h = require('preact').h;
 var render = require('preact-render-to-string');
 
-app.get('/node', function (req, res) {
-  request('http://localhost', function (error, response, body) {
+app.get('/', function (req, res) {
+  request('http://localhost:8080', function (error, response, body) {
     var data = JSON.parse(body);
     var cities = []
     for (var item in data) {
